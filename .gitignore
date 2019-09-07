@@ -1,0 +1,9 @@
+# 不要資産
+.DS_Store
+memo.md
+
+# npmパッケージ
+node_modules
+
+# webpack本番資産（コンパイルの成果物）
+public/bundle.js
