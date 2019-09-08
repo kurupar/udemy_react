@@ -3,6 +3,6 @@ import React from 'react';
 // Reactのブラウザに特化したライブラリ
 import ReactDom from 'react-dom';
 
-import App from './components/app';
+import App from './components/App';
 
 ReactDom.render(<App />, document.querySelector('.container'));
