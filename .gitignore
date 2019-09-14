@@ -7,3 +7,6 @@ node_modules
 
 # webpack本番資産（コンパイルの成果物）
 public/bundle.js
+
+# api保存ディレクトリ（暫定対応)
+src/components/api.jsx
