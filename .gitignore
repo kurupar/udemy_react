@@ -9,7 +9,7 @@ node_modules
 public/bundle.js
 
 # api保存ディレクトリ（暫定対応)
-src/components/Api.jsx
+src/domain/Api.jsx
 
 # apiを記述のため除外(暫定対応)
 public/index.html

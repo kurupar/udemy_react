@@ -1,5 +1,7 @@
 // Reactのブラウザとアプリ開発で共通したライブラリ
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 
 class SearchForm extends Component {
   constructor(props) {
