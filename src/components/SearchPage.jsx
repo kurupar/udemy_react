@@ -5,10 +5,10 @@ import _ from 'lodash';
 import queryString from 'query-string';
 
 import SearchForm from './SearchForm';
-import GeocodeResult from './GeocodeResult';
-import Map from './Map';
+// import GeocodeResult from './GeocodeResult';
+// import Map from './Map';
+// import HotelsTable from './HotelsTable';
 import { geocode } from '../domain/Geocoder';
-import HotelsTable from './HotelsTable';
 import { searchHotelByLocation } from '../domain/HotelRepository';
 
 const sortedHotels = (hotels, sortKey) => _.sortBy(hotels, h => h[sortKey]);
@@ -52,12 +52,16 @@ class SearchPage extends Component {
     });
   }
 
-  handelPlaceChange(place) {
-    this.setState({ place });
+  handelPlaceChange(e) {
+    // 入力やスクロールやクリックなどのデフォルトのイベントを無視
+    e.preventDefault();
+    this.props.onPlaceChange(e.target.value);
   }
 
   handelPlaceSubmit(e) {
+    // 入力やスクロールやクリックなどのデフォルトのイベントを無視
     e.preventDefault();
+
     this.props.history.push(`/?place=${this.state.place}`);
     this.startSearch();
   }
@@ -101,10 +105,11 @@ class SearchPage extends Component {
       <div className="search-page">
         <h1 className="app-title">ホテル検索</h1>
         <SearchForm
-          place={this.state.place}
-          onPlaceChange={place => this.handelPlaceChange(place)}
+          place={this.props.place}
+          onPlaceChange={e => this.handelPlaceChange(e)}
           onSubmit={e => this.handelPlaceSubmit(e)}
         />
+        {/*
         <div className="result-area">
           <Map location={this.state.location} />
           <div className="result-right">
@@ -112,7 +117,7 @@ class SearchPage extends Component {
               address={this.state.address}
               location={this.state.location}
             />
-            <h2>ホテル検索結果　</h2>
+            <h2>ホテル検索結果</h2>
             <HotelsTable
               hotels={this.state.hotels}
               sortKey={this.state.sortKey}
@@ -120,6 +125,7 @@ class SearchPage extends Component {
             />
           </div>
         </div>
+        */}
       </div>
     );
   }
@@ -128,6 +134,8 @@ class SearchPage extends Component {
 SearchPage.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func }).isRequired,
   location: PropTypes.shape({ search: PropTypes.string }).isRequired,
+  onPlaceChange: PropTypes.func.isRequired,
+  place: PropTypes.string.isRequired,
 };
 
 export default SearchPage;
