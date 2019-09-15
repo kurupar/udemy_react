@@ -1,12 +1,12 @@
 import axios from 'axios';
-import Api from './Api';
+import Key from '../key/Key';
 
 const GEOCODE_ENDPOINT = 'https://maps.googleapis.com/maps/api/geocode/json';
 
 export const geocode = place =>
 axios
   .get(GEOCODE_ENDPOINT, {
-    params: { address: place, key: Api.GEOCODE_API },
+    params: { address: place, key: Key.GEOCODE_API },
   })
   .then((results) => {
     const data = results.data;

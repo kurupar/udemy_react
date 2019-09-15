@@ -17,7 +17,7 @@ HotelsTable.propTypes = {
 };
 
 HotelsTable.defaultProps = {
-  hotels: {},
+  hotels: [],
 };
 
 export default HotelsTable;
