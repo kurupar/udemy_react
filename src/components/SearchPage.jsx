@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import queryString from 'query-string';
 
-import SearchForm from './SearchForm';
+import SearchForm from '../containers/SearchForm';
 // import GeocodeResult from './GeocodeResult';
 // import Map from './Map';
 // import HotelsTable from './HotelsTable';
@@ -27,19 +27,10 @@ class SearchPage extends Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = this.props.store.subscribe(() => {
-      // renderだけを強制的に実行。stateはreadonlyなので触らない。
-      this.forceUpdate();
-    });
     // const place = this.getPlaceParam();
     // if (place) {
     //   this.startSearch(place);
     // }
-  }
-
-  componentWillUnmount() {
-    // renderの強制実行の解除
-    this.unsubscribe();
   }
 
   getPlaceParam() {
@@ -59,12 +50,6 @@ class SearchPage extends Component {
         lng: 0,
       },
     });
-  }
-
-  handelPlaceChange(e) {
-    // 入力やスクロールやクリックなどのデフォルトのイベントを無視
-    e.preventDefault();
-    this.props.store.dispatch({ type: 'CHANGE_PLACE', place: e.target.value });
   }
 
   handelPlaceSubmit(e) {
@@ -110,13 +95,10 @@ class SearchPage extends Component {
   }
 
   render() {
-    const state = this.props.store.getState();
     return (
       <div className="search-page">
         <h1 className="app-title">ホテル検索</h1>
         <SearchForm
-          place={state.place}
-          onPlaceChange={e => this.handelPlaceChange(e)}
           onSubmit={e => this.handelPlaceSubmit(e)}
         />
         {/*
@@ -144,11 +126,6 @@ class SearchPage extends Component {
 SearchPage.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func }).isRequired,
   location: PropTypes.shape({ search: PropTypes.string }).isRequired,
-  store: PropTypes.shape({
-    subscribe: PropTypes.func,
-    getState: PropTypes.func,
-    dispatch: PropTypes.func,
-  }).isRequired,
 };
 
 export default SearchPage;
