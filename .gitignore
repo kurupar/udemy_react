@@ -7,9 +7,3 @@ node_modules
 
 # webpack本番資産（コンパイルの成果物）
 public/bundle.js
-
-# key保存ディレクトリ（暫定対応)
-src/key/*
-
-# apiを記述のため除外(暫定対応)
-public/index.html

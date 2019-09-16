@@ -1,11 +1,12 @@
 import geolib from 'geolib';
 import Rakuten from '../lib/Rakuten';
-import Key from '../key/Key';
+
+const RAKUTEN_APP_ID = 'YOUR_API_ID';
 
 // eslint-disable-next-line import/prefer-default-export
 export const searchHotelByLocation = (location) => {
   const params = {
-    applicationId: Key.RAKUTEN_APP_ID,
+    applicationId: RAKUTEN_APP_ID,
     datumType: 1,
     latitude: location.lat,
     longitude: location.lng,
